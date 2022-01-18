@@ -20,24 +20,24 @@ export class SideNavComponent implements OnInit {
       "identifier" : "kt-floor2-data2"
     }
   ]
-  list=[
-    {
-      "type" : "Vehicle Speed",
-      "identifier" : "kt-data"
-    },
-    {
-      "type" : "Engine RPM",
-      "identifier" : "kt-datarpm"
-    },
-    {
-      "type" : "Angular Gauge",
-      "identifier" : "new-item"
-    },
-    {
-      "type" : "Battery Gauge",
-      "identifier" : "batt"
-    }
-  ]
+  // list=[
+  //   {
+  //     "type" : "Vehicle Speed",
+  //     "identifier" : "kt-data"
+  //   },
+  //   {
+  //     "type" : "Engine RPM",
+  //     "identifier" : "kt-datarpm"
+  //   },
+  //   {
+  //     "type" : "Angular Gauge",
+  //     "identifier" : "new-item"
+  //   },
+  //   {
+  //     "type" : "Battery Gauge",
+  //     "identifier" : "batt"
+  //   }
+  // ]
   
   @Output() selectedDevice = new EventEmitter(); 
   selectedIdentifier = '';
@@ -46,17 +46,9 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if(currentUser){
-      if(currentUser?.plan === "floor"){
-        console.log("yes")
         this.selectedDevice.emit(this.floors[0]);
         this.selectedIdentifier = this.floors[0].type;
         this.members=[...this.members,...this.floors.slice(0,10)]
-      }
-      else{
-        this.selectedDevice.emit(this.list[0]);
-        this.selectedIdentifier = this.list[0].type;
-        this.members=[...this.members,...this.list.slice(0,10)]
-      }
     }   
   }
   
@@ -67,7 +59,7 @@ export class SideNavComponent implements OnInit {
     const buffer = 200;
     const limit = tableScrollHeight - tableViewHeight - buffer;
     if (scrollLocation > limit) {
-      this.members=[...this.members,...this.list.slice(this.members.length,this.members.length+5)]
+      this.members=[...this.members,...this.floors.slice(this.members.length,this.members.length+5)]
     }
   }
   onNavClick(device){

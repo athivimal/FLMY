@@ -1,19 +1,3 @@
-<ng-container *ngIf="identifier === 'kt-data'">
-  <ng-container *ngTemplateOutlet="AnimatedGauge"></ng-container>
-</ng-container>
-
-<ng-container *ngIf="identifier === 'kt-datarpm'">
-  <ng-container *ngTemplateOutlet="PictorialChart"></ng-container>
-</ng-container>
-
-<ng-container *ngIf="identifier === 'new-item'">
-<ng-container *ngTemplateOutlet="AngularGauge"></ng-container>
-</ng-container>
-
-<ng-container *ngIf="identifier === 'batt'">
-  <ng-container *ngTemplateOutlet="BatteryGauge"></ng-container>
-  </ng-container>
-
   <ng-container *ngIf="identifier === 'kt-floor1-data1'">
     <ng-container *ngTemplateOutlet="Floor1"></ng-container>
   </ng-container>
@@ -33,42 +17,6 @@
       <app-floor-plan [floorValues]="mqPackets" [img]="'floor2'"></app-floor-plan>
     </div>
   </ng-template>
-
-<ng-template #AnimatedGauge>
-  <div class="row">
-  <div class="col-12 col-md-6 col-lg-4" *ngFor="let tx of mqPackets; let i = index"> 
-      <app-animated-gauge [value]="tx.value" [name]="tx.node"></app-animated-gauge>
-  </div>
-  </div>
-</ng-template>
-
-<ng-template #AngularGauge>
-<div class="row">
-<div class="col-12 col-md-6 col-lg-4" *ngFor="let tx of mqPackets; let i = index"> 
-    <app-angular-gauge [value]="tx.value" [name]="tx.node"></app-angular-gauge>
-</div>
-</div>
-</ng-template>
-
-<ng-template #BatteryGauge>
-  <div class="row">
-  <div class="col-12 col-md-6 col-lg-4" *ngFor="let tx of mqPackets; let i = index"> 
-      <app-battery-gauge [value]="tx.value" [name]="tx.node"></app-battery-gauge>
-  </div>
-  </div>
-  </ng-template>
-
-<ng-template #PictorialChart>
-  <div class="row">
-  <div class="col-12 col-md-6 col-lg-4" *ngFor="let tx of mqPackets; let i = index">
-      <app-pictorial-chart
-      [value]="tx.value"
-      [name]="tx.node"
-      ></app-pictorial-chart>
-  </div>
-  </div>
-</ng-template>
-
 
 <!-- <div [ngSwitch]="selectedChart">
 <app-animated-gauge *ngSwitchCase="'Animated Gauge'"[value]="50" [name]="'chart'"></app-animated-gauge>
